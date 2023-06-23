@@ -1,0 +1,164 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+
+<!-- edit post title content or file -->
+<link rel="stylesheet" href="/static/styles/settings.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{% if message %}
+<p class="message" style="color: red;">Error: {{ message }}</p>
+{% endif %}
+
+<div class="page">
+    <div class="d-flex flex-column">
+        <form action="/account/edit" method="post" enctype="multipart/form-data">
+            <!-- username -->
+            <div class="username">
+                <h3>{{ g.user.username }}</h3>
+            </div>
+            <!-- input for profile picture -->
+            <div class="picture_upload">
+                <div>
+                    <img class="profile_pic" id="pfpimg"
+                        src="{% if g.user.profile_pic %}{{ g.user.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"
+                        alt="profile picture">
+                </div>
+                <div class="file-div">
+                    <div class="upload-btn-wrapper-first">
+                        <input name="profile_pic" type="file" id="myFileInput1"
+                            accept="image/png, image/jpg, image/jpeg" style="display: none;">
+                        <button class="file-btn"
+                            onclick="document.getElementById('myFileInput1').click(); return false;">
+                            <img class="upload-img" src="/static/images/upload_img_icon.png" alt="upload">
+                        </button>
+                        <span class="file-upload-label">Upload New Profile Picture</span>
+                    </div>
+                </div>
+            </div>
+            <div class="set_input">
+                <!-- input for username -->
+                <div class="section">
+                    <div>
+                        <label class="first_label" for="username">Username</label>
+                        <label for="email">Email</label>
+                    </div>
+                    <!-- input for email -->
+                    <div>
+                        <input class="first_label" type="text" name="username" placeholder="Username"
+                            value="{{ g.user.username }}">
+                        <input type="text" name="email" placeholder="Email"
+                            value="{% if g.user.email != None %}{{ g.user.email }}{% endif %}">
+                    </div>
+                </div>
+                <!-- input for first name -->
+                <div class="section">
+                    <div>
+                        <label class="first_label" for="first_name">First Name</label>
+                        <label for="last_name">Last Name</label>
+                    </div>
+                    <div>
+                        <input class="first_label" type="text" name="first_name"
+                            value="{% if g.user.first_name != None %}{{ g.user.first_name }}{% endif %}">
+                        <!-- input for last name -->
+                        <input type="text" name="last_name"
+                            value="{% if g.user.last_name != None %}{{ g.user.last_name }}{% endif %}">
+                    </div>
+                </div>
+                <!-- input for password -->
+                <div class="section">
+                    <div>
+                        <label class="first_label" for="new_pass">New Password</label>
+                        <label for="retype">Re-Type Password</label>
+                    </div>
+                    <div>
+                        <input class="first_label" type="text" name="password" minlength="6">
+                        <!-- input for confirm password -->
+                        <input type="text" name="confirm_password">
+                    </div>
+                </div>
+            </div>
+            <!-- text area for bio -->
+            <div class="input_bio">
+                <label for="about_me">About Me</label>
+                <textarea name="about_me">{% if g.user.about_me != None %}{{ g.user.about_me }}{% endif %}</textarea>
+            </div>
+            <!-- input for banner picture -->
+            <div class="picture_upload">
+                <div>
+                    <img class="banner_pic" id="bnrimg"
+                        src="{% if g.user.banner_pic %}{{ g.user.banner_pic }}{% else %}{{url_for('static', filename='images/default_banner.png')}}{% endif %}"
+                        alt="banner picture">
+                </div>
+                <div class="file-div">
+                    <div class="upload-btn-wrapper-last">
+                        <input name="banner_pic" type="file" id="myFileInput2" accept="image/png, image/jpg, image/jpeg"
+                            style="display: none;">
+                        <button class="file-btn"
+                            onclick="document.getElementById('myFileInput2').click(); return false;">
+                            <img class="upload-img" src="/static/images/upload_img_icon.png" alt="upload">
+                        </button>
+                        <span class="file-upload-label">Upload New Banner</span>
+                    </div>
+                </div>
+            </div>
+            {% if not g.user.is_business %}
+            <!-- private account check box -->
+            <div class="input_private">
+                <label class="checkbox-container">
+                    <input type="checkbox" name="private" value="1" {% if g.user.private %}checked{% endif %}>
+                    <span class="checkmark"></span>
+                    Set profile to private.
+                </label>
+            </div>
+            {% endif %}
+
+            <!-- button for post -->
+            <div class="buttons">
+                <div class="post">
+                    <button class="button" type="submit">Save</button>
+                </div>
+        </form>
+        <form action="/account">
+            <button class="button" type="submit">Back</button>
+        </form>
+        <form action="/account/{{ g.user.user_id }}/delete">
+            <button class="button" id="logout" type="submit">Delete Acct</button>
+        </form>
+
+    </div>
+</div>
+<script>
+    $("#myFileInput1").change(function (e) {
+
+        for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+
+            var file = e.originalEvent.srcElement.files[i];
+
+            var img = document.getElementById("pfpimg");
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                img.src = reader.result;
+            }
+            reader.readAsDataURL(file);
+            $("myFileInput1").after(img);
+        }
+    });
+    $("#myFileInput2").change(function (e) {
+
+        for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+
+            var file = e.originalEvent.srcElement.files[i];
+
+            var img = document.getElementById("bnrimg");
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                img.src = reader.result;
+            }
+            reader.readAsDataURL(file);
+            $("myFileInput2").after(img);
+        }
+    });
+</script>
+
+{% endblock %}

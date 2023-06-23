@@ -1,0 +1,59 @@
+.landing-msg {
+    padding: 5% 10%;
+}
+
+.welcome {
+    font: normal normal 900 40px/50px Poppins;
+    color: #57A1BD;
+}
+
+.join-btn {
+    width: 150px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #EFEFEF;
+    color: #57A1BD;
+    font: normal normal 900 20px/15px Poppins;
+    border: #57A1BD solid 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.join-btn:hover {
+    background-color: #57A1BD;
+    color: #EFEFEF;
+}
+
+.business-msg {
+    text-align: right;
+    padding: 5% 10%;
+    width: 100%;
+    background-color: #57A1BD;
+}
+
+.business-title {
+    font: normal normal 900 60px/70px Poppins;
+    color: white;
+}
+
+.business-text {
+    font: normal normal normal 400 40px/50px Poppins;
+    color: white;
+}
+
+.business-btn {
+    width: 150px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #57A1BD;
+    color: #EFEFEF;
+    font: normal normal 900 20px/15px Poppins;
+    border: #EFEFEF solid 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.business-btn:hover {
+    background-color: #EFEFEF;
+    color: #57A1BD;
+}

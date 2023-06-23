@@ -1,0 +1,115 @@
+<!-- Layout for all pages as to not rewrite code -->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>BarHiveඞ</title>
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"> -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/styles/_layout.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+</head>
+
+<body>
+	<header class="" style="position: fixed; width: 100%">
+		<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+			<div class="container-fluid">
+				{% if g.user.is_business %}
+				<a class="navbar-brand" href="/"><img src="/static/images/barhive_business_logo_white.png"
+						alt="Bee Logo" width="180" height="24" class="d-inline-block align-text-top"></a>
+				{% else %}
+				<a class="navbar-brand" href="/"><img src="/static/images/barhive_logoFull_white.png" alt="Bee Logo"
+						width="100" height="24" class="d-inline-block align-text-top"></a>
+				{% endif %}
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link {{ home }}" aria-current="page" href="/">Home</a>
+					</li>
+					{% if logged_in == False %}
+					<li class="nav-item">
+						<a class="nav-link {{ login }}" href="/login">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {{ register }}" href="/register">Sign Up</a>
+					</li>
+				</ul>
+
+				{% else %}
+
+				<li class="nav-item">
+					<a class="nav-link {{ feed }}" href="/feed">Feed</a>
+				</li>
+				<li class="nav-item">
+					{% if g.user.is_business %}
+					<a class="nav-link {{ account }}" href="/account">{{ g.user.username }}</a>
+					{% else %}
+					<a class="nav-link {{ account }}" href="/account">{{ g.user.username }}</a>
+					{% endif %}
+				</li>
+				</ul>
+				<span class="search-container">
+					<form action="/search" method="get" id="search" class="d-flex input-group" role="search">
+						<input class="form-control transparent-input shadow-none" id="search_bar" name="query" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn btn-outline-light" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
+								width="20" height="20" fill="currentColor" class="bi bi-search " viewBox="0 0 16 16">
+								<path
+									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+							</svg>
+						</button>
+					</form>
+				</span>
+				{% endif %}
+			</div>
+		</nav>
+	</header>
+</body>
+
+<div class="my-container">
+	{% block body %}{% endblock %}
+	{% block features %}{% endblock %}
+	{% block reviews %}{% endblock %}
+	{% block events %}{% endblock %}
+	{% block menu %}{% endblock %}
+</div>
+
+<footer>
+	<div class="foot-container">
+		<div class="contact">
+			<p class="foot-title">Contact Us</p>
+			<p>1-800-555-1200</p>
+			<a href="mailto:" class="footer-link">barhive@info.com</a>
+		</div>
+		<div class="cust-service">
+			<p class="foot-title">Costumer Service</p>
+			<a href="#" class="footer-link">Contact Us</a>
+			<a href="#" class="footer-link">FAQ</a>
+			<a href="#" class="footer-link">Help</a>
+		</div>
+		<div class="info">
+			<p class="foot-title">Information</p>
+			<a href="#" class="footer-link">Privacy Policy</a>
+			<a href="#" class="footer-link">Terms & Conditions</a>
+		</div>
+		<div class="subscribe">
+			<p class="foot-title">Subscribe to BarHive via Email</p>
+			<p>Learn more and stay up to date with BarHive</p>
+			<form>
+				<input type="email" class="form-control email" placeholder="E-Mail Address">
+				<button class="btn-email">Subscribe</button>
+			</form>
+		</div>
+		<div class="copyright">
+			<p>© 2023 BarHive. All Rights Reserved.</p>
+		</div>
+	</div>
+	<!-- <img class="foot-img" src="/static/images/barHive_logoWhite45.png"> -->
+</footer>
+
+</html>

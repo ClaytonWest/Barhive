@@ -1,0 +1,539 @@
+.links a:link {
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+.links a:visited {
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+.banner img {
+    width: 100%;
+    height: 300px;
+}
+
+.banner {
+    height: 300px;
+    object-fit: cover;
+    object-position: bottom;
+    overflow: hidden;
+}
+
+.avatar {
+    object-fit: cover;
+    overflow: hidden;
+    object-position: center;
+    width: 200px;
+    height: 200px;
+    border: 2px solid white;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    filter: drop-shadow(1px 3px 3px rgb(177, 177, 177));
+    z-index: 2;
+    background-color: white;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+.header {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0 0 15px 15px;
+    filter: drop-shadow(1px 3px 3px rgb(177, 177, 177));
+}
+
+.title {
+    font-family: Poppins, sans-serif;
+    text-align: center;
+}
+
+.title a{
+    font-family: Poppins, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+}
+
+.links {
+    font-family: Poppins, sans-serif;
+    color: #57A1BD;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom {
+    padding: 3em;
+}
+
+.subtitle {
+    font-family: Poppins, sans-serif;
+    font-weight: 200;
+    font-size: 24px;
+    color: #7F7F7F;
+    text-align: center;
+}
+
+.address {
+    font-family: Poppins, sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    color: #7F7F7F;
+    text-align: center;
+}
+
+.description {
+    font-family: Poppins, sans-serif;
+    color: #57A1BD;
+    padding-top: 2em;
+}
+
+.follow {
+    text-align: center;
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+#follow-btn {
+    font-family: Poppins, sans-serif;
+    background-color: #57A1BD !important;
+    color: white;
+}
+
+.setting_button {
+    margin-left: 95%;
+    text-align: right;
+    cursor: pointer;
+}
+
+.profile-links a:link {
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+.profile-links a:visited {
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+.profile-links1 a:link {
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+.profile-links1 a:visited {
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+.description h2 {
+    font: normal normal 400 32px/48px Poppins;
+    text-align: center;
+    color:#7F7F7F;
+}
+
+/* REVIEWS */
+
+/* EVENTS */
+
+.posts li {
+    list-style-type: none;
+    margin-top: 2em;
+    margin-right: auto;
+    padding: 0;
+}
+
+.post-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* FEATURES */
+
+.features {
+    background-color: rgb(255, 255, 255);
+    border-radius:15px;
+    filter: drop-shadow(1px 3px 3px rgb(177, 177, 177));
+    padding: 2em;
+    margin-top: 2em;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Poppins;
+}
+
+/* MENU */
+
+.menu_links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 700px;
+    margin-left: auto;
+    margin-top: 1em;
+    font: normal normal 400 16px/24px Poppins;
+}
+
+.menu_links a:link {
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+.menu_links a:visited {
+    text-decoration: none;
+    color: #57A1BD;
+}
+
+.menu {
+    background-color: rgb(255, 255, 255);
+    border-radius:15px;
+    filter: drop-shadow(1px 3px 3px rgb(177, 177, 177));
+    padding: 2em;
+    margin-top: 2em;
+    max-width: 700px;
+    height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Poppins;
+    text-align: center;
+}
+
+.no_menu {
+    background-color: rgb(255, 255, 255);
+    border-radius:15px;
+    filter: drop-shadow(1px 3px 3px rgb(177, 177, 177));
+    padding: 2em;
+    margin-top: 2em;
+    max-width: 700px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Poppins;
+    text-align: center;
+}
+
+.menu h3 {
+    margin-bottom: 1em;
+}
+/*Followers Tab*/
+.follower-data {
+    margin:0;
+    padding: 3% 11%;
+    width:49%;
+    display:inline-block;
+}
+
+.follower-container
+{
+    margin-top: 1.5rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    min-width: 400px;
+    height: auto;
+    padding: 25px 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    filter: drop-shadow(1px 3px 3px rgb(177, 177, 177));
+    /* margin-left: auto; */
+    margin-bottom: 1rem;
+}
+.image-small
+{
+    border-radius:50% 50% 50% 50%;
+    width:60px;
+    height:60px;
+
+}
+
+.follower-name
+{
+    font: normal normal 700 18px/30px Poppins;
+    color: #57A1BD;
+    /* color: #535353; */
+    text-decoration: none;
+}
+
+.follower-name:hover {
+    /* color: #36A3C0; */
+    color: #535353;
+}
+
+.title-icon{
+    margin:0;
+    padding: 1% 10%;
+    width:100%;
+    display:inline-block;
+    text-align: center;
+    font: normal normal 800 24px/36px Poppins;
+    color: #555555;
+}
+
+/* feed */
+.post-card {
+    /*work with width*/
+    margin-top: 1.5rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    min-width: 400px;
+    height: auto;
+    padding: 25px 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    filter: drop-shadow(1px 3px 3px rgb(177, 177, 177));
+    /* margin-left: auto; */
+    margin-bottom: 1rem;
+}
+
+.list {
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    max-width: 700px;
+}
+
+.post-card-container {
+    display: flex;
+    /* justify-content: end; */
+    padding: 5px;
+}
+
+.user_profile {
+    display: flex;
+    align-items: center;
+}
+
+.pfp {
+    /* width: 100px;
+    height: 100px; */
+    border-radius: 50%;
+}
+
+.user_info {
+    margin-left: 20px;
+}
+
+.user_picture {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font: normal normal 900 24px/33px Poppins;
+    color: #535353;
+    text-decoration: none;
+}
+
+.username:hover {
+    color: #36A3C0;
+}
+
+.checked {
+    font: normal normal normal 20px/27px Poppins;
+    color: #535353;
+}
+
+.location {
+    font: normal normal 900 20px/27px Poppins;
+    color: #36A3C0;
+    text-decoration: none;
+}
+
+.post_title {
+    display: flex;
+}
+
+.title {
+    width: auto;
+    font: normal normal 900 24px/33px Poppins;
+    color: #535353;
+    text-decoration: none;
+    padding-top: 5px;
+}
+
+.title h1:hover {
+    color: #36A3C0;
+}
+
+.content {
+    font: normal normal medium 20px/27px Poppins;
+    color: #555555;
+}
+
+.image {
+    margin: 10px;
+    height: 150px;
+    width: auto;
+    border: 1px solid #ccc;
+    border-radius: 15%;
+}
+
+.event {
+    /* push to the left */
+    font: normal normal 15px/20px Poppins;
+    color: #555555;
+    padding-top: 2px;
+}
+
+.date {
+    /* push to the left */
+    font: oblique normal normal 15px/20px Poppins;
+    color: #707070;
+    padding-top: 2px;
+}
+
+.comments {
+    position: absolute;
+    display: flex;
+    right: 100px;
+    padding-top: 2px;
+    padding-right: 25px;
+    font: normal normal normal 15px/20px Poppins;
+    color: #707070;
+}
+
+.comment_icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.like {
+    position: absolute;
+    display: flex;
+    right: 0;
+    padding-right: 25px;
+    font: normal normal normal 15px/20px Poppins;
+    color: #707070;
+}
+
+.likes {
+    padding-top: 2px;
+    padding-right: 5px;
+}
+
+.like_icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+p {
+    margin-bottom: 0em;
+}
+
+.settings-container {
+    position: relative;
+    display: inline-block;
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    right: 0;
+}
+
+.settings-container img {
+    cursor: pointer;
+}
+
+.settings-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+}
+
+.settings-option {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.settings-option:hover {
+    background-color: gray;
+    color: white;
+}
+
+
+/*CSS for: if there are no post in feed.html*/
+.home-button {
+    background-color: #57A1BD;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+    font: normal normal medium 30px/40px Poppins;
+}
+
+/*CSS for: if there are no post in feed.html*/
+.home-button:hover {
+    background-color: #5592a8;
+}
+
+/*CSS for: if there are no post in feed.html*/
+.congrats{
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #A6CAD8;
+}
+
+/*CSS for: if there are no post in feed.html*/
+h2 {
+    text-align: center;
+    font: normal normal medium 30px/40px Poppins;
+    letter-spacing: 0px;
+    color: #7F7F7F;
+    opacity: 1;
+}
+
+/*CSS for: if there are no post in feed.html*/
+.button-container {
+    padding: 1rem;
+}
+
+/*CSS for: if there are no post in feed.html*/
+a {
+    text-decoration: none;
+}
+
+embed {
+    height:95%;
+    width:100%;
+    padding-bottom: 1.5em;
+}
+
+.heading {
+    width: auto;
+    font: normal normal 500 40px/46px Poppins;
+    color: #535353;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.heading a{
+    text-decoration: none;
+    color: #535353;
+}
+
+.heading a:hover {
+    color: #57A1BD;
+}

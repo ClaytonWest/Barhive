@@ -1,0 +1,49 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/styles/search.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<div class="my_search">
+    <h1>Searched: "{{ query }}"</h1>
+    <p>Found {{ posts|length }} results.</p>
+</div>
+
+{% include '_feed.html' %}
+
+<script>
+    // insert the search query into the search bar
+    $(document).ready(function () {
+        $("#search_bar").val("{{ query }}");
+    });
+    // check every post username, title, and content
+    // if it contains the search query, add highlight class
+    let query = "{{ query }}".toLocaleLowerCase();
+    let posts = document.getElementsByClassName("post-card");
+    for (let i = 0; i < posts.length; i++) {
+        let post = posts[i];
+        let username = post.getElementsByClassName("username")[0].innerHTML;
+        let title = post.getElementsByClassName("title")[0].innerHTML
+        let content = post.getElementsByClassName("content")[0].innerHTML;
+        // add highlight class to just the search query
+        if (username.toLocaleLowerCase().includes(query)) {
+            let index = username.toLocaleLowerCase().indexOf(query);
+            let new_username = username.substring(0, index) + "<span class='highlight'>" + username.substring(index, index + query.length) + "</span>" + username.substring(index + query.length);
+            post.getElementsByClassName("username")[0].innerHTML = new_username;
+        }
+        if (title.toLocaleLowerCase().includes(query)) {
+            let index = title.toLocaleLowerCase().indexOf(query);
+            let new_title = title.substring(0, index) + "<span class='highlight'>" + title.substring(index, index + query.length) + "</span>" + title.substring(index + query.length);
+            post.getElementsByClassName("title")[0].innerHTML = new_title;
+        }
+        if (content.toLocaleLowerCase().includes(query)) {
+            let index = content.toLocaleLowerCase().indexOf(query);
+            let new_content = content.substring(0, index) + "<span class='highlight'>" + content.substring(index, index + query.length) + "</span>" + content.substring(index + query.length);
+            post.getElementsByClassName("content")[0].innerHTML = new_content;
+        }
+    }
+
+</script>
+
+{% endblock %}

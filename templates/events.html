@@ -1,0 +1,102 @@
+{% extends '_layout.html' %}
+
+{% block events %}
+
+<link rel="stylesheet" href="/static/styles/business_profile.css">
+<link rel="stylesheet" href="/static/styles/_feed.css">
+
+<body>
+    <section class="">
+        <div class="container">
+            <div class="container2">
+                <div class="header">
+                    <div class="banner">
+                        <img src="{% if g.user.banner_pic %}{{ g.user.banner_pic }}{% else %}{{url_for('static', filename='images/default_banner.png')}}{% endif %}" alt="banner_pic">
+                    </div>
+                    <div class="z-2 rounded-3 avatar">
+                        <img src="{% if g.user.profile_pic %}{{ g.user.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}" alt="profile_pic">
+                    </div>
+                    <div class="bottom">
+                        <div class="links">
+                            <a href="/user/{{user_id}}/reviews">REVIEWS</a>
+                            <a href="/user/{{user_id}}/events">EVENTS</a>
+                            <span id="rating">
+                                {% for r in range(rating) %}
+                                <img src="/static/images/filled-star_blue.png" alt="star" width="25" height="25">
+                                {% endfor %}
+                                {% for r in range(5-rating) %}
+                                <img src="/static/images/empty-star_blue.png" alt="star" width="25" height="25">
+                                {% endfor %}
+                            </span>
+                            <!-- Needs a way for "account" - what if user is own self? -->
+                            <a href="/user/{{user_id}}/features">FEATURES</a>
+                            <a href="/user/{{user_id}}/menu">MENU</a>
+                        </div>
+                            <div class="heading pt-3">
+                                <h1 class="heading">
+                                    <a href="/user/{{user_id}}">{{ user.username }}</a>
+                                </h1>
+                            </div>
+                            <div class="description">
+                                <h2>Events</h2>
+                            </div>
+                    </div>
+                </div>
+                <div class="posts">
+                    {% for post in events %}
+                                    <li>
+                                        <div class="post-card">
+                                            <div class="user_profile">
+                                                <div class="pfp">
+                                                    <a href="/user/{{ post.user.user_id }}"><img class="user_picture"
+                                                            src="{% if post.user.profile_pic %}{{ post.user.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"
+                                                            alt="pfp"></a>
+                                                </div>
+                                                <div class="user_info">
+                                                    <a class="username" href="/user/{{ post.user.user_id }}">
+                                                        <p class="username" id="user">{{ post.user.username }}</p>
+                                                    </a>
+                                                </div>
+                                                {% if post.user_id == g.user.user_id %}
+                                                <div class="settings-container">
+                                                    <!-- options to edit or delete -->
+                                                    <img src="/static/images/setting_icon.png" id="{{ post.post_id }}" for="settings"
+                                                        alt="Settings" class="settings-icon" width="25" height="25">
+                                                    <div class="settings-options" for="so{{ post.post_id }}">
+                                                        <a href="/feed/edit/{{ post.post_id }}" class="settings-option">Edit</a>
+                                                        <a href="/feed/delete/{{ post.post_id }}" class="settings-option">Delete</a>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="post_title">
+                                                <a class="title" href="/feed/{{ post.post_id }}">
+                                                    <h1 class="title" id="title">{{ post.title }}</h1>
+                                                </a>
+                                            </div>
+                                            {% if post.content %}
+                                            <div class="content">
+                                                <p id="content">"{{ post.content }}"</p>
+                                            </div>
+                                            {% endif %}
+                                            {% if post.file %}
+                                            <div>
+                                                <img class="image" src="{{ post.file }}" alt="post_image">
+                                            </div>
+                                            {% endif %}
+                                            {% if post.event %}
+                                            <div class="event">
+                                                <p>From the {{ post.from_date.split("-")[2] }}th to the {{ post.to_date.split("-")[2] }}th
+                                                </p>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+{% endblock %}

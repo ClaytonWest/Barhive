@@ -1,0 +1,26 @@
+.my_search {
+    max-width: 1200px;
+    width: 80%;
+    height: auto;
+    padding: 25px 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    filter: drop-shadow(1px 3px 3px rgb(177, 177, 177));
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.my_search h1 {
+    font: normal normal 900 44px/60px Avenir;
+    color: #555555;
+}
+.my_search p {
+    font: normal normal 900 15px/20px Avenir;
+    color: #555555;
+}
+
+.highlight {
+    background-color: yellow;
+}

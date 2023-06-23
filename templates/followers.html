@@ -1,0 +1,64 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/styles/user_profile.css">
+<!-- user body -->
+
+<body>
+    <section class="">
+        <div class="container">
+            <div class="secondary-container">
+                <div class="header">
+                    <div class="banner">
+                        <img src="{% if g.user.banner_pic %}{{ g.user.banner_pic }}{% else %}{{url_for('static', filename='images/default_banner.png')}}{% endif %}"
+                            alt="banner_pic">
+                    </div>
+                    <div class="z-2 avatar">
+                        <img src="{% if g.user.profile_pic %}{{ g.user.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"
+                            alt="profile_pic">
+                    </div>
+                    <div class="bottom">
+                        <div class="mid-container">
+                            <div class="profile-name">
+                                <h3 class="">{{ g.user.username }} </h3>
+                            </div>
+                            <div class="profile-links">
+                                <a href="/account/followers">{{ followers_num }} Followers</a>
+                            </div>
+                        </div>
+                        <div class="description">
+                            {% if g.user.about_me %}
+                            {{ g.user.about_me }}
+                            {% else %}
+                            <p>Nothing here...</p>
+                            {% endif %}
+                        </div>
+                        <div class="setting_button">
+                            <a href="/account/edit"><img src="{{url_for('static', filename='images/setting-gear.png')}}"
+                                    height="25" width="25"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% if followerBool %}
+    <div class="follow-container">
+        {% if followers_num > 0 %}
+            {% for follower in followers %}
+            <a class="follower-data" href="/user/{{ follower.user_id }}">
+                <img src="{% if g.user.profile_pic %}{{ follower.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"alt="profile_pic">
+                <p class="username" id="user">{{ follower.username }}</p>
+            </a>
+            {% endfor %}
+        {% else %}
+        <div class="landing-msg">
+                <h1 class="congrats">No Followers Yet</h1>
+                <h2 class="text-center">
+                    Post Content Or Connect With Friends To Get More Followers
+                </h2>
+        </div>
+    </div>
+    {% endif %}
+{% endif %}
+{% endblock %}

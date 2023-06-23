@@ -1,0 +1,213 @@
+{% block business_body %}
+
+<link rel="stylesheet" href="/static/styles/business_profile.css">
+<!-- business body -->
+
+<body>
+    <section class="">
+        <div class="container">
+            <div class="secondary-container">
+                <div class="header">
+                    <div class="banner">
+                        <img src="{% if user.banner_pic %}{{ user.banner_pic }}{% else %}{{url_for('static', filename='images/default_banner.png')}}{% endif %}"
+                            alt="banner_pic">
+                    </div>
+                    <div class="z-2 rounded-3 avatar">
+                        <img src="{% if user.profile_pic %}{{ user.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"
+                            alt="profile_pic">
+                    </div>
+                    <div class="bottom">
+                        <div class="links">
+                            <a href="/user/{{user_id}}/reviews">REVIEWS</a>
+                            <a href="/user/{{user_id}}/events">EVENTS</a>
+                            <span id="rating">
+                                {% for r in range(rating) %}
+                                <img src="/static/images/filled-star_blue.png" alt="star" width="25" height="25">
+                                {% endfor %}
+                                {% for r in range(5-rating) %}
+                                <img src="/static/images/empty-star_blue.png" alt="star" width="25" height="25">
+                                {% endfor %}
+                            </span>
+                            <a href="/user/{{user_id}}/features">FEATURES</a>
+                            <a href="/user/{{user_id}}/menu">MENU</a>
+                        </div>
+                        <div class="heading pt-3">
+                            <h1 class="heading">
+                                {{ user.username }}
+                            </h1>
+                        </div>
+                        {% if user.address %}
+                        <div class="address">
+                            <p>{{ g.user.address }}{% if g.user.city %}, {{ g.user.city }}{% endif %}{% if g.user.state %}, {{ g.user.state }}{% endif %}</p>
+                        </div>
+                        {% endif %}
+                        <div class="description">
+                            {% if user.about_me %}
+                            {{ user.about_me }}
+                            {% else %}
+                            <p>Nothing here...</p>
+                            {% endif %}
+                        </div>
+                        <div class="follow">
+                            {% if is_Following == True %}
+                            <form class="profile-links1" action='/unfollow/{{ user.user_id}}' method="POST">
+                                <a href="/user/{{ user.user_id }}/followers">{{ followers_num }} Followers</a>
+                                <button id="follow-btn" class="btn" type="submit">Following</button>
+                            </form>
+                            {% else %}
+                            <form class="profile-links" action='/follow/{{ user.user_id}}' method="POST">
+                                <a href="/user/{{ user.user_id }}/followers">{{ followers_num }} Followers</a>
+                                <button id="follow-btn" class="btn" type="submit">Follow</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+{% if followerBool %}
+<div class="follower-container">
+    {% if followers_num > 0 %}
+    <div class="title-icon">
+        <h>Followers</h>
+    </div>
+    {% for follower in followers %}
+    <div class="follower-data">
+        <a href="/user/{{ follower.user_id }}"><img class='image-small'
+                src="{% if follower.profile_pic %}{{ follower.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"
+                alt="profile_pic"></a>
+        <a href="/user/{{ follower.user_id }}" p class="follower-name" id="user">{{ follower.username }}</a>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="landing-msg">
+        <h1 class="congrats">No Followers</h1>
+        <h2 class="text-center">
+            This user has no followers.
+        </h2>
+    </div>
+    {% endif %}
+</div>
+{% else %}
+<!-- Feed Goes Here -->
+<div class="feed">
+    {% if not posts %}
+
+    <div class="landing-msg">
+        <h1 class="congrats">No posts here.</h1>
+        <h2 class="text-center">
+            This user has not posted.
+        </h2>
+    </div>
+
+    {% else %}
+    <ul class="list">
+        {% for post in posts %}
+        <li>
+            <div class="post-card">
+                <div class="user_profile">
+                    <div class="pfp">
+                        <a href="/user/{{ post.user.user_id }}"><img class="user_picture"
+                                src="{% if post.user.profile_pic %}{{ post.user.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"
+                                alt="pfp"></a>
+                    </div>
+                    <div class="user_info">
+                        <a class="username" href="/user/{{ post.user.user_id }}">
+                            <p class="username" id="user">{{ post.user.username }}</p>
+                        </a>
+                        {% if post.check_in %}
+                        {% for rating in ratings %}
+                        {% if rating.post_id == post.post_id %}
+                        <p class="checked">checked into <a class="location" href="/user/{{rating.business_id}}">{{
+                                rating.business_name }}</a></p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        </p>
+                        <div class="rating-container">
+                            <span id="rating">
+                                {% if post.check_in %}
+                                {% for rating in ratings %}
+                                {% if rating.post_id == post.post_id %}
+                                {% set stars = rating.rating %}
+                                {% for r in range(stars) %}
+                                <img src="/static/images/filled-star_yellow.png" alt="star" width="20" height="20">
+                                {% endfor %}
+                                {% for r in range(5-stars) %}
+                                <img src="/static/images/empty-star_yellow.png" alt="star" width="20" height="20">
+                                {% endfor %}
+                                {%endif%}
+                                {% endfor %}
+                                {%endif%}
+                            </span>
+                        </div>
+                    </div>
+                    {% if post.user_id == g.user.user_id %}
+                    <div class="settings-container">
+                        <!-- options to edit or delete -->
+                        <img src="/static/images/setting_icon.png" id="{{ post.post_id }}" for="settings" alt="Settings"
+                            class="settings-icon" width="25" height="25">
+                        <div class="settings-options" for="so{{ post.post_id }}">
+                            <a href="/feed/edit/{{ post.post_id }}" class="settings-option">Edit</a>
+                            <a href="/account/post/{{ post.post_id }}/delete" class="settings-option">Delete</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="post_title">
+                    <a class="title" href="/feed/{{ post.post_id }}">
+                        <h1 class="title" id="title">{{ post.title }}</h1>
+                    </a>
+                </div>
+                {% if post.content %}
+                <div class="content">
+                    <p id="content">"{{ post.content }}"</p>
+                </div>
+                {% endif %}
+                {% if post.file %}
+                <div>
+                    <img class="image" src="{{ post.file }}" alt="post_image">
+                </div>
+                {% endif %}
+                {% if post.event %}
+                <div class="event">
+                    <p>From the {{ post.from_date.split("-")[2] }}th to the {{ post.to_date.split("-")[2] }}th
+                    </p>
+                </div>
+                {% endif %}
+                <div class="post-card-container">
+                    <div class="date">
+                        <p>{{ post.post_date.split(' ')[0] }}</p>
+                    </div>
+                    <!-- comments -->
+                    <a href="/feed/{{ post.post_id }}">
+                        <div class="comments">
+                            <img class="comment_icon" src="/static/images/comment_icon.png" alt="comment">
+                            <p class="comment">{{ post.comments }} comments</p>
+                        </div>
+                    </a>
+                    <!-- like button, dont even ask bruh -->
+                    <div class="like">
+                        <p class="likes" id="{{ post.post_id }}t">{{ post.likes }} Likes</p>
+                        <a for="like" id="{{ post.post_id }}"><img class="like_icon" id="{{ post.post_id }}img" {% set
+                                like_icon={'src': 'src=/static/images/likeButton_default.png' } %} {% for like in likes
+                                if like.post_id==post.post_id and like.user_id==g.user.user_id %} {% if
+                                like.like_type==1 %} {% set
+                                _=like_icon.update({'src': 'src=/static/images/likeButton_red.png' }) %} {% elif
+                                like.like_type==-1 %} {% set
+                                _=like_icon.update({'src': 'src=/static/images/likeButton_grey.png' }) %} {% endif %} {%
+                                endfor %} {{ like_icon.src }}></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+<script src="/static/javascript/feed_func.js"></script>
+{% endif %}
+{% endblock %}

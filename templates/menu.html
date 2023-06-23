@@ -1,0 +1,63 @@
+{% extends '_layout.html' %}
+
+{% block menu %}
+
+<link rel="stylesheet" href="/static/styles/business_profile.css">
+
+<body>
+    <section class="">
+        <div class="container">
+            <div class="container2">
+                <div class="header">
+                    <div class="banner">
+                        <img src="{% if g.user.banner_pic %}{{ g.user.banner_pic }}{% else %}{{url_for('static', filename='images/default_banner.png')}}{% endif %}" alt="banner_pic">
+                    </div>
+                    <div class="z-2 rounded-3 avatar">
+                        <img src="{% if g.user.profile_pic %}{{ g.user.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}" alt="profile_pic">
+                    </div>
+                    <div class="bottom">
+                        <div class="links">
+                            <a href="/user/{{user_id}}/reviews">REVIEWS</a>
+                            <a href="/user/{{user_id}}/events">EVENTS</a>
+                            <span id="rating">
+                                {% for r in range(rating) %}
+                                <img src="/static/images/filled-star_blue.png" alt="star" width="25" height="25">
+                                {% endfor %}
+                                {% for r in range(5-rating) %}
+                                <img src="/static/images/empty-star_blue.png" alt="star" width="25" height="25">
+                                {% endfor %}
+                            </span>
+                            <!-- Needs a way for "account" - what if user is own self? -->
+                            <a href="/user/{{user_id}}/features">FEATURES</a>
+                            <a href="/user/{{user_id}}/menu">MENU</a>
+                        </div>
+                            <div class="heading pt-3">
+                                <h1 class="heading">
+                                    <a href="/user/{{user_id}}">{{ user.username }}</a>
+                                </h1>
+                            </div>
+                            <div class="description">
+                                <h2>Menu</h2>
+                            </div>
+                    </div>
+                </div>
+                {% if menu != None %}
+                <div class="menu">
+                    <h3>{{menu_title}}</h3>
+                    <embed src="https://media.olivegarden.com/images/site/pdf/D-1-032023_PROOF.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                        type="application/pdf"
+                        frameBorder="0"
+                        scrolling="auto"
+                    ></embed>
+                </div>
+                {% else %}
+                <div class="no_menu">
+                    <h3>Menu not available</h3>
+                </div>    
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</body>
+
+{% endblock %}

@@ -1,0 +1,236 @@
+.create-card {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    background-color: white;
+}
+
+.form {
+    display: flex;
+}
+
+.page-title {
+    font: normal normal 900 50px/68px Poppins;
+    color: #555555;
+}
+
+.title-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font: normal normal 900 18px/25px Poppins;
+    color: #7F7F7F;
+    padding-bottom: 15px;
+}
+
+label {
+    padding: 5px;
+}
+
+.create-container textarea:not(.file),
+.create-container input:not(.file) {
+    background-color: #A6CAD84B;
+    border: 1px solid #A6CAD8;
+    border-radius: 8px;
+}
+
+.create-container {
+    width: 65%;
+}
+
+.business_input {
+    width:  30%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    padding: 15px;
+}
+
+.create_title {
+    height: 2rem;
+}
+
+.create_title:focus {
+    outline: none !important;
+    border-color: #57A1BD !important;
+}
+
+.content:focus {
+    outline: none !important;
+    border-color: #57A1BD !important;
+}
+
+.file-div {
+    padding-top: 8%;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.file-btn {
+    border: 2px solid #57A1BD;
+    color: #333;
+    background-color: #E3EFF5;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.upload-btn {
+    padding: 7px;
+    border: none;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    background-image: url(/static/images/upload_icon.png);
+    background-size: cover;
+}
+
+.file-upload-label {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.upload {
+    display: flex;
+}
+
+.myFile {
+    margin: 10px;
+    height: 100px;
+    width: auto;
+    border: 1px solid #ccc;
+    border-radius: 15%;
+}
+
+.content-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font: normal normal 900 18px/25px Poppins;
+    color: #7F7F7F;
+    padding-bottom: 15px;
+}
+
+.file-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+span {
+    font: normal normal 900 18px/25px Poppins;
+    color: #7F7F7F;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post-btn {
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #57A1BD;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-btn:hover {
+    background-color: #5592a8;
+}
+
+.input_event {   
+    height: 45px;
+    color: #7F7F7F;
+    font: normal normal 900 20px/25px Avenir;
+}
+
+.checkbox-container {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    margin-top: 4px;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #DEECF4;
+    border: #A6CAD8 solid 2px;
+    border-radius: 5px;
+}
+
+.checkbox-container:hover input~.checkmark {
+    background-color: #A6CAD8;
+}
+
+.checkbox-container input:checked~.checkmark {
+    background-color: #57A1BD;
+    border: #57A1BD solid 2px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    content: "";
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.section {
+    display: grid;
+    color: #7F7F7F;
+    font: normal normal 900 14px/19px Avenir;
+}
+
+.date {
+    border-color: #A6CAD8;
+    background-color: #4c595e4b;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font: normal normal 900 18px/25px Poppins;
+    color: #7F7F7F;
+}
+
+.date:focus {
+    outline: none !important;
+    border-color: #57A1BD !important;
+}
+
+#sec2 {
+    margin-bottom: 18px;
+}

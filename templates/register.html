@@ -1,0 +1,50 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+
+<!-- register page -->
+<link rel="stylesheet" href="/static/styles/register.css">
+
+<body>
+  <div class="card">
+    <!-- title of card -->
+    <h2>Create an Account</h2>
+    <div class="social-login">
+      <div class="social-button">
+        <a class="google" href="/googlelogin">
+          <img width="15px" style="margin-bottom:3px; margin-right:5px" alt="Google login" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+          Sign in with Google
+        </a>
+      </div>
+      <!-- weird -- or -- with lines -->
+      <div class="or-line">
+        <span class="or-span">
+          or
+        </span>
+      </div>
+    </div>
+    <form action="/register" method="post">
+      <input type="text" id="username" name="username" placeholder="Username" value="{{ info['username'] }}" required>
+      <input type="email" id="email" name="email" placeholder="Email" value="{{ info['email'] }}" required>
+      <input type="password" id="password" name="password" placeholder="Password" value="{{ info['password'] }}"
+        minlength="6" required>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+      <p class="privacy">By creating an account, you agree to our <a href="/policy">Privacy Policy.</a></p>
+      <!-- error message handler -->
+      <div class="message">
+        {% if message %}
+        {% if message == "email" %}
+        <p class="message-m" style="color: red;">*Error: Email already exists, <a href="/login">Login</a></p>
+        {% else %}
+        <p class="message-m" style="color: red;">*Error: {{ message }}</p>
+        {% endif %}
+        {% endif %}
+      </div>
+      <button type="submit" class="signup-btn">Sign Up</button>
+    </form>
+    <!-- link to business register -->
+    <a href="/business/register" class="business-link">Are you a business?</a>
+  </div>
+</body>
+
+{% endblock %}

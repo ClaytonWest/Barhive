@@ -1,0 +1,83 @@
+.card {
+    max-width: 500px;
+    margin: 3em auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+    color: #7F7F7F;
+    /* font-weight: bold; */
+    font: normal normal 900 45px/68px Poppins;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+input {
+    width: 70%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #A6CAD8;
+    background-color: #A6CAD84B;
+    font-size: 14px;
+}
+
+::placeholder {
+    color: #57A1BD;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none !important;
+    border-color: #57A1BD;
+}
+
+.privacy {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.message {
+    height: 20px;
+    font-size: 12px;
+    margin-bottom: 0px;
+    padding: 5px;
+}
+
+.message-m {
+    font-size: 12px;
+    margin-bottom: 0px;
+    padding: 0px;
+    color: white;
+}
+
+a {
+    color: #57A1BD;
+}
+
+.signup-btn {
+    width: 70%;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #57A1BD;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.signup-btn:hover {
+    background-color: #5592a8;
+}

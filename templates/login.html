@@ -1,0 +1,51 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+
+<!-- login page -->
+<link rel="stylesheet" href="/static/styles/login.css">
+
+<body>
+  <div class="login-card">
+    <div class="left-card">
+      <!-- title -->
+      <h2>Login to Your Account</h2>
+      <div class="social-login">
+        <!-- buttons for login API's -->
+        <div class="social-buttons">
+          <div class="social-button">
+            <a class="google" href="/googlelogin">
+              <img width="15px" style="margin-bottom:3px; margin-right:5px" alt="Google login" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+              Sign in with Google
+            </a>
+          </div>
+        </div>
+        <div class="or-line">
+          <span class="or-span">
+            or
+          </span>
+        </div>
+      </div>
+      <form action="/login" method="post">
+        <input type="email" id="email" name="email" placeholder="Email" value="{{ info['email'] }}" required autocomplete="on">
+        <input type="password" id="password" name="password" placeholder="Password" value="{{ info['password'] }}"
+          required autocomplete="on">
+        <!-- error message handler -->
+        <div class="message">
+          {% if message %}
+          <p class="message-m" style="color: red;">*Error: {{ message }} Click here to <a href="/register">Sign Up</a>
+          </p>
+          {% endif %}
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+    </div>
+    <div class="right-card">
+      <h2>New Here?</h2>
+      <span>Sign up to discover new and exciting places around you!</span>
+      <a href="/register"><button class="signup-btn">Sign Up</button></a>
+    </div>
+  </div>
+</body>
+
+{% endblock %}

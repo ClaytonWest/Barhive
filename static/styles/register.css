@@ -1,0 +1,132 @@
+.card {
+    max-width: 500px;
+    margin: 3em auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+    color: #7F7F7F;
+    /* font-weight: bold; */
+    font: normal normal 900 45px/68px Poppins;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+input {
+    width: 70%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #A6CAD8;
+    background-color: #A6CAD84B;
+    font-size: 14px;
+}
+
+::placeholder {
+    color: #57A1BD;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none !important;
+    border-color: #57A1BD;
+}
+
+.message {
+    height: 20px;
+    font-size: 12px;
+    margin-bottom: 0px;
+    padding: 5px;
+}
+
+.message-m {
+    font-size: 12px;
+    margin-bottom: 0px;
+    padding: 0px;
+    color: white;
+}
+
+.privacy {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+
+a {
+    color: #57A1BD;
+}
+
+.signup-btn {
+    width: 70%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #57A1BD;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-btn:hover {
+    background-color: #5592a8;
+}
+
+.business-link {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #57A1BD;
+    text-decoration: none;
+}
+
+.google {
+    text-decoration: none;
+    color: #7F7F7F;
+}
+
+.social-button {
+    padding: 10px;
+}
+
+.social-login {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font: normal normal normal 14px/19px Poppins;
+    color: #7F7F7F;
+}
+
+.social-login span {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.social-login button {
+    flex: 1;
+    margin: 0 5px;
+}
+
+.or-line {
+    width: 70%;
+    height: 13px;
+    border-bottom: 1px solid #9F9F9F;
+    color: #7F7F7F;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.or-span {
+    font-size: 10px;
+    background-color: white;
+    padding: 0 10px;
+}

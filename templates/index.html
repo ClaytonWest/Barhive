@@ -1,0 +1,26 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+
+{% if logged_in %}
+{% include '_feed.html' %}
+{% else %}
+<link rel="stylesheet" href="/static/styles/index.css">
+<main>
+    <section>
+        <div class="landing-msg">
+            <h1 class="welcome">Join the world’s fastest growing<br>social media platform that<br>focuses on what really
+                matters:<br>…gettin’ lit.</h1>
+            <a href="/register"><button class="join-btn">JOIN</button></a>
+        </div>
+    </section>
+    <div class="business-msg">
+        <img src="/static/images/barhive_business_logo_white.png" alt="" height="80" class="mb-3">
+        <p class="business-text">Are you a business looking to advertise your venue? <br>Click the button below to learn
+            more about BarHive business.</p>
+        <a href="/business/register"><button class="business-btn">BUSINESS</button></a>
+    </div>
+</main>
+{% endif %}
+
+{% endblock %}

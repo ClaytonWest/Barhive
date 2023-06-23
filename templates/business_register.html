@@ -1,0 +1,34 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+
+<!-- register page -->
+<link rel="stylesheet" href="/static/styles/business_register.css">
+
+<body>
+  <div class="card">
+    <h2>Create a Business Account</h2>
+    <form action="/business/register" method="post">
+      <input type="text" id="business_name" name="business_name" placeholder="Business Name"
+        value="{{ info['business_name'] }}" required>
+      <input type="business_email" id="business_email" name="business_email" placeholder="Business Email"
+        value="{{ info['business_email'] }}" required>
+      <input type="password" id="password" name="password" placeholder="Password" value="{{ info['password'] }}"
+        minlength="6" required>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+      <p class="privacy">By creating an account, you agree to our <a href="/policy">Privacy Policy.</a></p>
+      <div class="message">
+        {% if message %}
+        {% if message == "email" %}
+        <p class="message-m" style="color: red;">*Error: Email already exists, <a href="/login">Login</a></p>
+        {% else %}
+        <p class="message-m" style="color: red;">*Error: {{ message }}</p>
+        {% endif %}
+        {% endif %}
+      </div>
+      <button type="submit" class="signup-btn">Sign Up</button>
+    </form>
+  </div>
+</body>
+
+{% endblock %}

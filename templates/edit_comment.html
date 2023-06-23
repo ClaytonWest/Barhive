@@ -1,0 +1,67 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+
+<link rel="stylesheet" href="/static/styles/create.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- form  -->
+<div class="create-card">
+    <form action="/feed/{{ post_id }}/comment/{{ comment.comment_id }}/edit" method="post"
+        enctype="multipart/form-data">
+        <div class="form">
+            <div class="create-container">
+                <div>
+                    <h1 class="page-title">Edit Comment</h1>
+                </div>
+                <!-- input for post content -->
+                <div class="content-div">
+                    <label>Write something...</label>
+                    <textarea class="content" name="content" rows="4">{{ comment.content }}</textarea>
+                </div>
+                <!-- input for single file attachment -->
+                <div class="upload">
+                    <img class="myFile" id="myFile"
+                        src="{% if comment.file %}{{ comment.file }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"
+                        alt="your image">
+                    <div class="file-div">
+                        <div class="file-upload-btn-wrapper">
+                            <input name="file" type="file" id="myFileInput" accept="image/png, image/jpg, image/jpeg"
+                                style="display: none;">
+                            <button class="file-btn"
+                                onclick="document.getElementById('myFileInput').click(); return false;">
+                                <img class="upload-img" src="/static/images/upload_img_icon.png" alt="upload">
+                            </button>
+                            <span class="upload-label">Upload Image</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- button for post -->
+            <div class="post">
+                <button class="post-btn" type="submit">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("#myFileInput").change(function (e) {
+
+        for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+
+            var file = e.originalEvent.srcElement.files[i];
+
+            var img = document.getElementById("myFile");
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                img.src = reader.result;
+            }
+            reader.readAsDataURL(file);
+            $("myFileInput").after(img);
+        }
+    });
+</script>
+
+
+{% endblock %}

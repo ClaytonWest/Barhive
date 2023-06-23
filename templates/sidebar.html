@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/static/styles/sidebar.css">
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script src="../static/javascript/map_func.js"></script>
+
+<div class="sidebar-container">
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <h1 class="sidebar-title">FEED</h1>
+    </div>
+    <div class="divider"></div>
+    <div class="sidebar-item">
+      <label class="filter_label" for="filter">Filter by:</label>
+      <form action="/feed/filter" method="post">
+        <select class="filter" name="filter" id="filter" onchange="this.form.submit()">
+          {% if home %}
+          <option value="">Likes</option>
+          {% else %}
+          <option value="">Date</option>
+          {% endif %}
+          <option value="location"{% if selected == "location" %}selected{% endif %}>Near Me</option>
+          <option value="follow"{% if selected == "follow" %}selected{% endif %}>Followers</option>
+          <option value="venues"{% if selected == "venues" %}selected{% endif %}>Venues</option>
+          <option value="events"{% if selected == "events" %}selected{% endif %}>Event</option>
+        </select>
+      </form>
+
+      <div id="map"></div>
+
+      <div class="post">
+        <form action="/create" method="get">
+          <div class="get_create">
+            <button class="btn btn-post" type="submit">Create Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFoKhJXjpdutYp5APDID5ZVG4fi--9PDg&callback=initMap&v=weekly" defer>
+</script>

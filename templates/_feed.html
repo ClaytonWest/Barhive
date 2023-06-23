@@ -1,0 +1,160 @@
+<!-- feed -->
+<link rel="stylesheet" href="/static/styles/_feed.css">
+
+{% if event %}
+<div class="announcement">
+    <div>
+        <h1>Event nearby!</h1>
+        <p><a href="/user/{{ event.user_id }}">{{ event.username }}</a>: {{ event.content }}</p>
+    </div>
+    <div class="images">
+        <!-- x to close out of announcement -->
+        <a><img class="close" src="/static/images/x_icon.png" alt="close" height="20" width="20"></a>
+        {% if event.file %}
+        <img class="content" src="{{ event.file }}" alt="announcement" height="150" width="150">
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+<div class="container-main">
+    <div class="container-feed">
+        <div class="feed">
+            {% if not posts %}
+
+            <div class="landing-msg">
+                <h1 class="congrats">No posts here.</h1>
+                <h2 class="text-center">
+                    Change your filter or create a post.
+                </h2>
+                <div class="button-container">
+                    <a href="/create"><button class="home-button">Create Post</button></a>
+                </div>
+            </div>
+
+            {% else %}
+            <ul class="list">
+                {% for post in posts %}
+                <li>
+                    <div class="post-card">
+                        <div class="user_profile">
+                            <div class="pfp">
+                                <a href="/user/{{ post.user.user_id }}"><img class="user_picture"
+                                        src="{% if post.user.profile_pic %}{{ post.user.profile_pic }}{% else %}{{url_for('static', filename='images/default_pfp.png')}}{% endif %}"
+                                        alt="pfp"></a>
+                            </div>
+                            <div class="user_info">
+                                <a class="username" href="/user/{{ post.user.user_id }}">
+                                    <p class="username" id="user">{{ post.user.username }}</p>
+                                </a>
+                                {% if post.check_in %}
+                                {% for rating in ratings %}
+                                {% if rating.post_id == post.post_id %}
+                                <p class="checked">checked into <a class="location"
+                                        href="/user/{{rating.business_id}}">{{
+                                        rating.business_name }}</a></p>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                                </p>
+                                <div class="rating-container">
+                                    <span id="rating">
+                                        {% if post.check_in %}
+                                        {% for rating in ratings %}
+                                        {% if rating.post_id == post.post_id %}
+                                        {% set stars = rating.rating %}
+                                        {% for r in range(stars) %}
+                                        <img src="/static/images/filled-star_yellow.png" alt="star" width="20"
+                                            height="20">
+                                        {% endfor %}
+                                        {% for r in range(5-stars) %}
+                                        <img src="/static/images/empty-star_yellow.png" alt="star" width="20"
+                                            height="20">
+                                        {% endfor %}
+                                        {%endif%}
+                                        {% endfor %}
+                                        {%endif%}
+                                    </span>
+                                </div>
+                            </div>
+                            {% if post.user_id == g.user.user_id or g.user.admin %}
+                            <div class="settings-container">
+                                <!-- options to edit or delete -->
+                                <img src="/static/images/setting_icon.png" id="{{ post.post_id }}" for="settings"
+                                    alt="Settings" class="settings-icon" width="25" height="25">
+                                <div class="settings-options" for="so{{ post.post_id }}">
+                                    <a href="/feed/edit/{{ post.post_id }}" class="settings-option">Edit</a>
+                                    <a href="/feed/delete/{{ post.post_id }}" class="settings-option">Delete</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="post_title">
+                            <a class="title" href="/feed/{{ post.post_id }}">
+                                <h1 class="title" id="title">{{ post.title }}</h1>
+                            </a>
+                        </div>
+                        {% if post.content %}
+                        <div class="content">
+                            <p id="content">"{{ post.content }}"</p>
+                        </div>
+                        {% endif %}
+                        {% if post.file %}
+                        <div>
+                            <img class="image" src="{{ post.file }}" alt="post_image">
+                        </div>
+                        {% endif %}
+                        {% if post.event %}
+                        <div class="event">
+                            <p>From the {{ post.from_date.split("-")[2] }}th to the {{ post.to_date.split("-")[2] }}th
+                            </p>
+                        </div>
+                        {% endif %}
+                        <div class="post-card-container">
+                            {% if post.distance or post.distance == 0 %}
+                            {% set miles = post.distance %}
+                            {% if (miles < 1) %} <div class="date">
+                                <p>{{ post.post_date.split(' ')[0] }} | <1 mile away</p>
+                        </div>
+                        {% else %}
+                        <div class="date">
+                            <p>{{ post.post_date.split(' ')[0] }} | {{ miles|round }} miles away</p>
+                        </div>
+                        {% endif %}
+                        {% else %}
+                        <div class="date">
+                            <p>{{ post.post_date.split(' ')[0] }}</p>
+                        </div>
+                        {% endif %}
+                        <!-- comments -->
+                        <a href="/feed/{{ post.post_id }}">
+                            <div class="comments">
+                                <img class="comment_icon" src="/static/images/comment_icon.png" alt="comment">
+                                <p class="comment">{{ post.comments }} comments</p>
+                            </div>
+                        </a>
+                        <!-- like button, dont even ask bruh -->
+                        <div class="like">
+                            <p class="likes" id="{{ post.post_id }}t">{{ post.likes }} Likes</p>
+                            <a for="like" id="{{ post.post_id }}"><img class="like_icon" id="{{ post.post_id }}img" {%
+                                    set like_icon={'src': 'src=/static/images/likeButton_default.png' } %} {% for like
+                                    in likes if like.post_id==post.post_id and like.user_id==g.user.user_id %} {% if
+                                    like.like_type==1 %} {% set
+                                    _=like_icon.update({'src': 'src=/static/images/likeButton_red.png' }) %} {% elif
+                                    like.like_type==-1 %} {% set
+                                    _=like_icon.update({'src': 'src=/static/images/likeButton_grey.png' }) %} {% endif
+                                    %} {% endfor %} {{ like_icon.src }}></a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    <!--If post exist, sidebar will display-->
+    <div class="container-sidebar">
+        {% include 'sidebar.html' %}
+    </div>
+</div>
+
+<script src="/static/javascript/feed_func.js"></script>
